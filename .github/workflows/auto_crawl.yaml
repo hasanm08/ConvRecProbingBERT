@@ -30,7 +30,7 @@ jobs:
           pip install -r requirements.txt
           cd rec_probing
           pip install -e .
-          python3 rec_probing/rec_probing/scripts/run_probes.py \
+          python3 run_probes.py \
           --task $TASK \
           --probe_type ${PROBE_TYPE} \
           --input_folder $REPO_DIR/data/${PROBE_TYPE}/ \
