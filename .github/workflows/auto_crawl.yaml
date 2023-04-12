@@ -23,20 +23,19 @@ jobs:
           pip install -r requirements.txt
           cd rec_probing
           pip install -e .
-          ls
-      # - name: run
-      #   run: |
-      #     cd rec_probing\rec_probing\scripts
-      #     python3 run_probes.py \
-      #     --task $TASK \
-      #     --probe_type ${PROBE_TYPE} \
-      #     --input_folder $REPO_DIR/data/${PROBE_TYPE}/ \
-      #     --output_folder $REPO_DIR/data/output_data/probes/ \
-      #     --number_queries $NUMBER_PROBE_QUERIES \
-      #     --number_candidates 5 \
-      #     --batch_size 64 \
-      #     --probe_technique ${PROBE_TECHNIQUE} \
-      #     --bert_model 'bert-base-cased'
+      - name: run
+        run: |
+          cd rec_probing\scripts
+          python3 run_probes.py \
+          --task $TASK \
+          --probe_type ${PROBE_TYPE} \
+          --input_folder $REPO_DIR/data/${PROBE_TYPE}/ \
+          --output_folder $REPO_DIR/data/output_data/probes/ \
+          --number_queries $NUMBER_PROBE_QUERIES \
+          --number_candidates 5 \
+          --batch_size 64 \
+          --probe_technique ${PROBE_TECHNIQUE} \
+          --bert_model 'bert-base-cased'
       # - name: download_data_script
       #   run: |
       #     mkdir ./data/search
