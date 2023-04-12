@@ -30,6 +30,7 @@ jobs:
           pip install -r requirements.txt
           cd rec_probing
           pip install -e .
+          ls
           python3 run_probes.py \
           --task $TASK \
           --probe_type ${PROBE_TYPE} \
