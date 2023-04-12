@@ -25,7 +25,8 @@ jobs:
           pip install -e .
       - name: run
         run: |
-          cd rec_probing/scripts
+          ls
+          cd rec_probing/rec_probing/scripts
           python3 run_probes.py \
           --task $TASK \
           --probe_type ${PROBE_TYPE} \
