@@ -16,15 +16,20 @@ jobs:
       - run: python3 --version
       - name: Export Release Timestamp
         run: echo "APP_VERSION=v$(date +'%Y.%m.%d.%H.%M.%S')" >> $GITHUB_ENV
-      - name: init
+      # - name: init
+      #   run: |
+      #     python3 -m venv env
+      #     source env/bin/activate
+      #     pip install -r requirements.txt
+      #     cd rec_probing
+      #     pip install -e .
+      - name: run
         run: |
           python3 -m venv env
           source env/bin/activate
           pip install -r requirements.txt
           cd rec_probing
           pip install -e .
-      - name: run
-        run: |
           python3 rec_probing/rec_probing/scripts/run_probes.py \
           --task $TASK \
           --probe_type ${PROBE_TYPE} \
