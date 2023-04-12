@@ -25,24 +25,24 @@ jobs:
       #     pip install -e .
       - name: run
         run: |
-          echo "TASK=gr"
-          echo "SENTENCE_TYPE=type-II"
-          echo "PROBE_TYPE=recommendation"
-          echo "PROBE_TECHNIQUE=nsp"
+          echo "TASK='gr'" >> $GITHUB_ENV
+          echo "SENTENCE_TYPE='type-II'">> $GITHUB_ENV
+          echo "PROBE_TYPE='recommendation'">> $GITHUB_ENV
+          echo "PROBE_TECHNIQUE='nsp'">> $GITHUB_ENV
           python3 -m venv env
           source env/bin/activate
           pip install -r requirements.txt
           cd rec_probing
           pip install -e .
           python3 rec_probing/scripts/run_probes.py \
-          --task $TASK \
-          --probe_type ${PROBE_TYPE} \
-          --input_folder $REPO_DIR/data/${PROBE_TYPE}/ \
+          --task  ${{ env.TASK }} \
+          --probe_type ${{ env.PROBE_TYPE }} \
+          --input_folder $REPO_DIR/data/${{ env.PROBE_TYPE }}/ \
           --output_folder $REPO_DIR/data/output_data/probes/ \
-          --number_queries $NUMBER_PROBE_QUERIES \
+          --number_queries 4 \
           --number_candidates 5 \
           --batch_size 64 \
-          --probe_technique ${PROBE_TECHNIQUE} \
+          --probe_technique ${{ env.PROBE_TECHNIQUE }} \
           --bert_model 'bert-base-cased'
       # - name: download_data_script
       #   run: |
