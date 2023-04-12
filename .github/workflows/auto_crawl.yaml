@@ -25,9 +25,6 @@ jobs:
           pip install -e .
       - name: download_make dir
         run: |
-          mkdir data/search
-          mkdir data/recommendation
-          mkdir data/dialogue
           cd data/search
       - name: download_data_script
         run: |
