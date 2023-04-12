@@ -23,12 +23,14 @@ jobs:
           pip install -r requirements.txt
           cd rec_probing
           pip install -e .
-      - name: download_data_script
+      - name: download_make dir
         run: |
           mkdir ./data/search
           mkdir ./data/recommendation
           mkdir ./data/dialogue
           cd ./data/search
+      - name: download_data_script
+        run: |
           wget "http://deepyeti.ucsd.edu/jianmo/amazon/categoryFiles/CDs_and_Vinyl.json.gz"
           gunzip CDs_and_Vinyl.json.gz
           rm CDs_and_Vinyl.json.gz
