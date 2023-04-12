@@ -1,0 +1,27 @@
+name: Auto crawl
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  crawl:
+    runs-on: ubuntu-latest-8-cores
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - run: python3 --version
+      - name: init
+        run: |
+          python3 -m venv env
+          source env/bin/activate
+          pip install -r requirements.txt
+          cd rec_probing
+          pip install -e .
+      - name: download
+        run: |
+          ./download_data.sh
+          ./run_datasets_creation.sh
