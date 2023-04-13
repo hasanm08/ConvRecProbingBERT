@@ -43,11 +43,11 @@ jobs:
           unzip dialogues.csv.zip
           git clone https://github.com/ReDialData/website.git
           git checkout data
-      - name: dataset creation
-        run: |
-          sbatch create_dialogue_datasets.sbatch
-          sbatch create_recommendation_datasets.sbatch
-          sbatch create_search_datasets.sbatch
+      # - name: dataset creation
+      #   run: |
+      #     sbatch create_dialogue_datasets.sbatch
+      #     sbatch create_recommendation_datasets.sbatch
+      #     sbatch create_search_datasets.sbatch
       - name: run
         run: |
           python3 -m venv env
