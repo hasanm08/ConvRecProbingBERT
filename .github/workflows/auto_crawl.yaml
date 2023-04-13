@@ -35,7 +35,7 @@ jobs:
           unzip imdb_reviews.csv.zip
           rm imdb_reviews.csv.zip
           wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1pQnXa7DWLdeUpvUFsKusYzwbA5CAAZx7' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1pQnXa7DWLdeUpvUFsKusYzwbA5CAAZx7" -O goodreads_reviews_dedup.json.gz && rm -rf /tmp/cookies.txt
-          gunzip goodreads_reviews_dedup.json.gz
+          zcat goodreads_reviews_dedup.json.gz
           cd ../
           cd recommendation
           wget "http://files.grouplens.org/datasets/movielens/ml-25m.zip"
@@ -60,13 +60,19 @@ jobs:
           git checkout data
       - name: dataset creation
         run: |
-          cd data/recommendation
+          cd data/
+          cd recommendation
           mkdir gr
-          mkdir data/recommendation/ml25m
-          mkdir data/search/gr
-          mkdir data/search/ml25m
-          mkdir data/dialogue/books
-          mkdir data/dialogue/movies
+          cd ../
+          mkdir ml25m
+          cd ../
+          cd search
+          mkdir gr
+          mkdir ml25m
+          cd ../
+          cd dialogue
+          mkdir books
+          mkdir movies
 
           cd data/
           sbatch create_dialogue_datasets.sbatch
