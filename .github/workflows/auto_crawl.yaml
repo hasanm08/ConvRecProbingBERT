@@ -25,7 +25,12 @@ jobs:
           pip install -e .
       - name: download_make dir
         run: |
-          cd data/search
+          mkdir data
+          cd data
+          mkdir search
+          mkdir recommendation
+          mkdir dialogue
+          cd search
       - name: download_data_script
         run: |
           wget "http://deepyeti.ucsd.edu/jianmo/amazon/categoryFiles/CDs_and_Vinyl.json.gz"
