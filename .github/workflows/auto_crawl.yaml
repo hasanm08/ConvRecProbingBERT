@@ -62,6 +62,20 @@ jobs:
           git clone https://github.com/ReDialData/website.git
           cd website
           git checkout data
+      - name: dataset creation
+        run: |
+          cd data/recommendation
+          mkdir gr
+          mkdir data/recommendation/ml25m
+          mkdir data/search/gr
+          mkdir data/search/ml25m
+          mkdir data/dialogue/books
+          mkdir data/dialogue/movies
+
+          cd data/
+          sbatch create_dialogue_datasets.sbatch
+          sbatch create_recommendation_datasets.sbatch
+          sbatch create_search_datasets.sbatch
       - name: run
         run: |
           python3 -m venv env
@@ -84,13 +98,13 @@ jobs:
       #     flutter build web --web-renderer canvaskit
       #     cd build/web
       #     zip -r web-app-canvaskit.zip .
-      # - name: Release
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     tag: ${{ env.APP_VERSION }}
-      #     name: ${{ env.APP_VERSION }}
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     artifacts: "build/app/outputs/apk/release/*"
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ env.APP_VERSION }}
+          name: ${{ env.APP_VERSION }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: ""
       # - name: download
       #   run: |
       #     ./download_data.sh
