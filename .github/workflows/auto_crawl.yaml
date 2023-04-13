@@ -34,8 +34,6 @@ jobs:
           wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1quaTeELrdydQ9uFJi_EfruuoNPJ0TnhF' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1quaTeELrdydQ9uFJi_EfruuoNPJ0TnhF" -O imdb_reviews.csv.zip && rm -rf /tmp/cookies.txt
           unzip imdb_reviews.csv.zip
           rm imdb_reviews.csv.zip
-          wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1pQnXa7DWLdeUpvUFsKusYzwbA5CAAZx7' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1pQnXa7DWLdeUpvUFsKusYzwbA5CAAZx7" -O goodreads_reviews_dedup.json.gz && rm -rf /tmp/cookies.txt
-          zcat goodreads_reviews_dedup.json.gz
           cd ../
           cd recommendation
           wget "http://files.grouplens.org/datasets/movielens/ml-25m.zip"
