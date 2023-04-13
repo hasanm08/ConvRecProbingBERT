@@ -50,6 +50,7 @@ jobs:
           gunzip goodreads_books.json.gz
           rm goodreads_books.json.gz
           cd ../
+          cd../
           cd dialogue
           wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1naj_8j0MeCH2ZZ8u8WKLJqKDEoc5kggN' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1naj_8j0MeCH2ZZ8u8WKLJqKDEoc5kggN" -O dialogues.csv.zip && rm -rf /tmp/cookies.txt
           unzip dialogues.csv.zip
@@ -62,16 +63,18 @@ jobs:
           cd recommendation
           mkdir gr
           cd ../
+          cd../
           mkdir ml25m
+          cd../
           cd ../
           cd search
           mkdir gr
           mkdir ml25m
           cd ../
+          cd ../
           cd dialogue
           mkdir books
           mkdir movies
-
           cd data/
           sbatch create_dialogue_datasets.sbatch
           sbatch create_recommendation_datasets.sbatch
