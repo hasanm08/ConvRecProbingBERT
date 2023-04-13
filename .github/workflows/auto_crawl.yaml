@@ -45,12 +45,6 @@ jobs:
           git checkout data
       - name: dataset creation
         run: |
-          mkdir gr
-          mkdir ml25m
-          mkdir gr
-          mkdir ml25m
-          mkdir books
-          mkdir movies
           sbatch create_dialogue_datasets.sbatch
           sbatch create_recommendation_datasets.sbatch
           sbatch create_search_datasets.sbatch
