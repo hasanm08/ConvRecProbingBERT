@@ -25,7 +25,6 @@ jobs:
           pip install -e .
       - name: download_make dir
         run: |
-          mkdir data
           cd data
           mkdir search
           mkdir recommendation
