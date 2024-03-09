@@ -7,6 +7,8 @@ import json
 import random
 from nltk.corpus import stopwords
 import fasttext
+import nltk
+nltk.download('stopwords')
 
 language_pred_model = fasttext.load_model('lid.176.ftz')
 stpwrds = set(stopwords.words('english'))

@@ -45,8 +45,8 @@ def main():
     tasks = ['ml25m', 'gr', 'music']    
     # sentence_types = ['no-item', 'type-I', 'type-II']
     sentence_types = ['type-II']
-    # models = ['bert-base-cased', 'bert-large-cased']
-    models = ['bert-base-cased']
+    models = ['microsoft/deberta-v2-xlarge']
+    # models = ['bert-base-cased']
     dfs = []
     logging.info("Reading files")
     for task in tasks:
@@ -83,7 +83,7 @@ def main():
 
     calculate_corr=True
     if calculate_corr:
-        dfs_raw_corr = dfs_raw[dfs_raw["model"] == 'bert-large-cased']
+        dfs_raw_corr = dfs_raw[dfs_raw["model"] == 'microsoft/deberta-v2-xlarge']
 
         logging.info("Joining with year information")    
         data_path = args.input_folder.split("/output_data")[0]
@@ -99,7 +99,7 @@ def main():
         df_years_all = df_years_all[~df_years_all["year"].isnull()]
         df_years_all = df_years_all[df_years_all["year"] >1500]
         df_years_all = df_years_all[df_years_all["year"] <2100]
-        year_agg = dfs_raw[dfs_raw["model"] == "bert-large-cased"].\
+        year_agg = dfs_raw[dfs_raw["model"] == "microsoft/deberta-v2-xlarge"].\
                 merge(df_years_all, on=["task", "item"]).\
                 groupby(["probe", "sentence_type", "task", "model", "year"])[["R@1", "R@5"]].\
                 agg(["mean", "count"])    
@@ -157,7 +157,7 @@ def main():
 
         logging.info("Calculating standard token %")
         tokenizer = BertTokenizer.\
-                from_pretrained('bert-large-cased')
+                from_pretrained('microsoft/deberta-v2-xlarge')
         vocab = tokenizer.get_vocab()
         dfs_raw_corr["title_std_token_percentage"] = dfs_raw_corr.apply(lambda r, v=vocab: 
                 sum([w in v for w in str(r["title"]).split(" ")])/len(str(r["title"]).split(" ")),axis=1)
@@ -213,7 +213,7 @@ def main():
             bert_base = aux_df[(aux_df["task"]==task) & 
                             (aux_df["model"]=="bert-base-cased")][metric].values[0]
             bert_large = aux_df[(aux_df["task"]==task) & 
-                            (aux_df["model"]=="bert-large-cased")][metric].values[0]
+                            (aux_df["model"]=="microsoft/deberta-v2-xlarge")][metric].values[0]
             statistic, pvalue = scipy.stats.ttest_rel(bert_base, bert_large)
             statistical_tests.append(pvalue<0.01)
         statistical_tests_all.append(statistical_tests)

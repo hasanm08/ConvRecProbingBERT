@@ -15,13 +15,33 @@ logging.basicConfig(
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--task", default=None, type=str, required=True,
+    # parser.add_argument("--task", default=None, type=str, required=True,
+    #                     help="the task to run probes for ['ml25m', 'gr', 'music']")
+    # parser.add_argument("--probe_type", default=None, type=str, required=True,
+    #                     help="the probe to be used ['recommendation', 'search']")
+    # parser.add_argument("--input_folder", default=None, type=str, required=True,
+    #                     help="path for folder with /<task>/train.csv file")
+    # parser.add_argument("--output_folder", default=None, type=str, required=True,
+    #                     help="path for folder to write results")
+    # parser.add_argument("--number_candidates", default=1, type=int, required=False,
+    #                     help="number of candidates for the nsp probes.")
+    # parser.add_argument("--number_queries", default=10000, type=int, required=False,
+    #                     help="number of total probe queries.")
+    # parser.add_argument("--batch_size", default=1, type=int, required=False,
+    #                     help="batch_size")
+    # parser.add_argument("--num_epochs", default=1, type=int, required=False,
+    #                     help="num_epochs")
+    # parser.add_argument("--bert_model", default="bert-base-cased", type=str, required=False,
+    #                     help="bert model name ['bert-base-cased' or 'microsoft/deberta-v2-xlarge']")
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--task", default='gr', type=str, required=False,
                         help="the task to run probes for ['ml25m', 'gr', 'music']")
-    parser.add_argument("--probe_type", default=None, type=str, required=True,
+    parser.add_argument("--probe_type", default='search', type=str, required=False,
                         help="the probe to be used ['recommendation', 'search']")
-    parser.add_argument("--input_folder", default=None, type=str, required=True,
+    parser.add_argument("--input_folder", default='../../../data/search', type=str, required=False,
                         help="path for folder with /<task>/train.csv file")
-    parser.add_argument("--output_folder", default=None, type=str, required=True,
+    parser.add_argument("--output_folder", default='../../../data/output_data/probes/deberta/', type=str, required=False,
                         help="path for folder to write results")
     parser.add_argument("--number_candidates", default=1, type=int, required=False,
                         help="number of candidates for the nsp probes.")
@@ -29,10 +49,11 @@ def main():
                         help="number of total probe queries.")
     parser.add_argument("--batch_size", default=1, type=int, required=False,
                         help="batch_size")
-    parser.add_argument("--num_epochs", default=1, type=int, required=False,
-                        help="num_epochs")
-    parser.add_argument("--bert_model", default="bert-base-cased", type=str, required=False,
-                        help="bert model name ['bert-base-cased' or 'bert-large-cased']")
+ 
+    parser.add_argument("--bert_model", default='bert-base-cased', type=str, required=False,
+                        help="bert model name ['microsoft/deberta-base' or 'bert-base-cased' or 'microsoft/deberta-v2-xlarge']")
+    parser.add_argument("--probe_technique", default="nsp", type=str, required=False,
+                        help="probe technique for comparing sentences ['nsp', 'cls-sim', 'mean-sim']")
 
     args = parser.parse_args()
 

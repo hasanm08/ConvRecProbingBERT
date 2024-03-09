@@ -69,8 +69,8 @@ def main():
     for task in tasks:        
         for probe in ['recommendation', 'search']:
             for model in ['roberta-large']:
-            # for model in ['bert-large-cased']:                
-            # for model in ['bert-base-cased', 'bert-large-cased']:                
+            # for model in ['microsoft/deberta-v2-xlarge']:                
+            # for model in ['bert-base-cased', 'microsoft/deberta-v2-xlarge']:                
                 file_signature = "probe_type_{}_task_{}_num_candidates_{}_num_queries_{}_model_{}_technique_{}.csv".format(
                     probe, task, args.number_candidates, args.number_queries, model, args.probe_technique
                 )
@@ -89,7 +89,7 @@ def main():
     write_R_with_X_cand_file = False    
     if write_R_with_X_cand_file:
         logging.info("Calculating R_X@1 for plot")
-        random_line = ["search", "random", "bert-large-cased"]
+        random_line = ["search", "random", "microsoft/deberta-v2-xlarge"]
         for x in tqdm(range(2, 41)):
             dfs_raw["{}".format(x)] = dfs_raw.apply(lambda r, f=recall_at_with_cand,x=x:
                 f(r["query_scores"], r["labels"], x), axis=1)
@@ -124,7 +124,7 @@ def main():
         df_years_all = df_years_all[~df_years_all["year"].isnull()]
         df_years_all = df_years_all[df_years_all["year"] >1500]
         df_years_all = df_years_all[df_years_all["year"] <2100]
-        year_agg = dfs_raw[dfs_raw["model"] == "bert-large-cased"].\
+        year_agg = dfs_raw[dfs_raw["model"] == "microsoft/deberta-v2-xlarge"].\
                 merge(df_years_all, on=["task", "relevant_item"]).\
                 groupby(["probe", "task", "model", "year"])[["R_2@1", "R_5@1"]].\
                 agg(["mean", "count"])    
@@ -133,7 +133,7 @@ def main():
         year_agg.reset_index().\
             to_csv(args.output_folder+"agg_years_probe_results_{}.csv".format(args.probe_technique), sep="\t")
 
-        dfs_raw_corr = dfs_raw[dfs_raw["model"] == 'bert-large-cased']
+        dfs_raw_corr = dfs_raw[dfs_raw["model"] == 'microsoft/deberta-v2-xlarge']
 
         logging.info("Merging with in_wiki")    
         dfs_wiki = []
@@ -166,7 +166,7 @@ def main():
 
         logging.info("Calculating standard token %")
         tokenizer = BertTokenizer.\
-                from_pretrained('bert-large-cased')
+                from_pretrained('microsoft/deberta-v2-xlarge')
         vocab = tokenizer.get_vocab()
         dfs_raw_corr["prompt_item_std_token_percentage"] = dfs_raw_corr.apply(lambda r, v=vocab: 
                 sum([w in v for w in str(r["prompt_item"]).split(" ")])/len(str(r["prompt_item"]).split(" ")),axis=1)
@@ -257,7 +257,7 @@ def main():
     #                     (df_lists["model"]=="bert-base-cased")][metric].values[0]
     #     bert_large = df_lists[(df_lists["probe"]==probe) &
     #                     (df_lists["task"]==task) & 
-    #                     (df_lists["model"]=="bert-large-cased")][metric].values[0]
+    #                     (df_lists["model"]=="microsoft/deberta-v2-xlarge")][metric].values[0]
     #     statistic, pvalue = scipy.stats.ttest_rel(bert_base, bert_large)
     #     statistical_tests.append(pvalue<0.01)
     # df_tests = pd.DataFrame([statistical_tests], columns=final_order)

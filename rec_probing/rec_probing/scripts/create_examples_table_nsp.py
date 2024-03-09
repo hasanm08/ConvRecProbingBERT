@@ -18,17 +18,24 @@ logging.basicConfig(
 )    
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_folder", default=None, type=str, required=True,
-                        help="path for folder with probes output files")
+    # parser.add_argument("--input_folder", default=None, type=str, required=True,
+    #                     help="path for folder with probes output files")
     parser.add_argument("--number_queries", default=100000, type=int, required=False,
                         help="number of total probe queries.")
     parser.add_argument("--number_candidates", default=5, type=int, required=False,
                         help="number of candidates for the nsp probes.")
-    parser.add_argument("--output_folder", default=None, type=str, required=True,
-                        help="path for folder to write results")    
+    # parser.add_argument("--output_folder", default=None, type=str, required=True,
+    #                     help="path for folder to write results")    
     parser.add_argument("--popular_only", default=False, type=bool, required=False,
                         help="whether to use only popular items in eval")
 
+
+
+    parser.add_argument("--input_folder", default='../../../data/output_data/probes/', type=str, required=False,
+                        help="path for folder with /<task>/train.csv file")
+    parser.add_argument("--output_folder", default='../../../data/output_data/tabels/', type=str, required=False,
+                        help="path for folder to write results")
+    
     args = parser.parse_args()
 
     samples_df = []
@@ -41,7 +48,7 @@ def main():
         for probe in ['search', 'recommendation']:
             sampled_items = None
             sample_idx=None            
-            for model in ['bert-large-cased']:#['bert-base-cased', 'bert-large-cased']:
+            for model in ['microsoft/deberta-v2-xlarge']:#['bert-base-cased', 'microsoft/deberta-v2-xlarge']:
                 file_signature = "probe_type_{}_task_{}_num_candidates_{}_num_queries_{}_model_{}.csv".format(
                     probe, task, args.number_candidates, args.number_queries, model
                 )
