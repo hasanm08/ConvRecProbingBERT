@@ -38,7 +38,7 @@ def main():
             sampled_items = None
             sample_idx=None
             for sentence_type in ['type-I', 'type-II']:
-                for model in ['kamalkraj/deberta-v2-xlarge']:#['bert-base-cased', 'kamalkraj/deberta-v2-xlarge']:
+                for model in ['microsoft/deberta-v2-xlarge']:#['bert-base-cased', 'microsoft/deberta-v2-xlarge']:
                     file_signature = "probe_type_{}_task_{}_num_queries_{}_model_{}_sentence_type_{}.csv".format(
                         probe, task, args.number_queries, model, sentence_type
                     )

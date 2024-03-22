@@ -80,8 +80,8 @@ class MaskedLanguageModelProbe():
         self.batch_size = self.batch_size * max(1, self.n_gpu)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         if "deberta" in bert_model:
-            self.tokenizer= AutoTokenizer.from_pretrained(bert_model,use_fast=False).save_pretrained(".")
-            self.model= AutoModel.from_pretrained(bert_model)
+            self.tokenizer= AutoTokenizer.from_pretrained('microsoft/deberta-v2-xlarge',use_fast=False).save_pretrained(".")
+            self.model= AutoModel.from_pretrained('microsoft/deberta-v2-xlarge')
             # self.config = AutoConfig.from_pretrained(model_name)
             # self.drop = nn.Dropout(p=0.2)
             # self.pooler = MeanPooling()

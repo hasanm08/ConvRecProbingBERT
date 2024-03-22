@@ -29,7 +29,7 @@ def main():
     parser.add_argument("--batch_size", default=1, type=int, required=False,
                         help="batch_size")
     parser.add_argument("--bert_model", default="bert-base-cased", type=str, required=False,
-                        help="bert model name ['bert-base-cased' or 'kamalkraj/deberta-v2-xlarge']")
+                        help="bert model name ['bert-base-cased' or 'microsoft/deberta-v2-xlarge']")
 
     args = parser.parse_args()
 
