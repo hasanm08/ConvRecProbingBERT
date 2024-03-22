@@ -32,7 +32,7 @@ def main():
     # parser.add_argument("--num_epochs", default=1, type=int, required=False,
     #                     help="num_epochs")
     # parser.add_argument("--bert_model", default="bert-base-cased", type=str, required=False,
-    #                     help="bert model name ['bert-base-cased' or 'microsoft/deberta-v2-xlarge']")
+    #                     help="bert model name ['bert-base-cased' or 'kamalkraj/deberta-v2-xlarge']")
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", default='gr', type=str, required=False,
@@ -51,7 +51,7 @@ def main():
                         help="batch_size")
  
     parser.add_argument("--bert_model", default='bert-base-cased', type=str, required=False,
-                        help="bert model name ['microsoft/deberta-base' or 'bert-base-cased' or 'microsoft/deberta-v2-xlarge']")
+                        help="bert model name ['microsoft/deberta-base' or 'bert-base-cased' or 'kamalkraj/deberta-v2-xlarge']")
     parser.add_argument("--probe_technique", default="nsp", type=str, required=False,
                         help="probe technique for comparing sentences ['nsp', 'cls-sim', 'mean-sim']")
 
