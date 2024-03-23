@@ -1,6 +1,6 @@
 from transformers import RobertaForMaskedLM, RobertaTokenizer, BertForMaskedLM, BertTokenizer
 from transformers import AdamW, get_linear_schedule_with_warmup
-from transformers import DebertaV2Tokenizer,DebertaForMaskedLM , AdamW
+from transformers import DebertaV2Tokenizer,DebertaV2ForMaskedLM , AdamW
 
 from torch.nn.functional import softmax
 from torch.utils.data import TensorDataset, DataLoader
@@ -80,7 +80,7 @@ class MaskedLanguageModelProbe():
         self.batch_size = self.batch_size * max(1, self.n_gpu)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         if "deberta" in bert_model:
-            self.model = DebertaForMaskedLM.from_pretrained('microsoft/deberta-v2-xlarge')
+            self.model = DebertaV2ForMaskedLM.from_pretrained('microsoft/deberta-v2-xlarge')
             self.tokenizer= DebertaV2Tokenizer.from_pretrained('microsoft/deberta-v2-xlarge')
             # self.config = AutoConfig.from_pretrained(model_name)
             # self.drop = nn.Dropout(p=0.2)
