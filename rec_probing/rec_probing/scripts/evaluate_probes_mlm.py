@@ -45,7 +45,7 @@ def main():
     tasks = ['ml25m', 'gr', 'music']    
     # sentence_types = ['no-item', 'type-I', 'type-II']
     sentence_types = ['type-II']
-    models = ['microsoft/deberta-v2-xlarge']
+    models = ['microsoft/deberta-base']
     # models = ['bert-base-cased']
     dfs = []
     logging.info("Reading files")
@@ -83,7 +83,7 @@ def main():
 
     calculate_corr=True
     if calculate_corr:
-        dfs_raw_corr = dfs_raw[dfs_raw["model"] == 'microsoft/deberta-v2-xlarge']
+        dfs_raw_corr = dfs_raw[dfs_raw["model"] == 'microsoft/deberta-base']
 
         logging.info("Joining with year information")    
         data_path = args.input_folder.split("/output_data")[0]
@@ -99,7 +99,7 @@ def main():
         df_years_all = df_years_all[~df_years_all["year"].isnull()]
         df_years_all = df_years_all[df_years_all["year"] >1500]
         df_years_all = df_years_all[df_years_all["year"] <2100]
-        year_agg = dfs_raw[dfs_raw["model"] == "microsoft/deberta-v2-xlarge"].\
+        year_agg = dfs_raw[dfs_raw["model"] == "microsoft/deberta-base"].\
                 merge(df_years_all, on=["task", "item"]).\
                 groupby(["probe", "sentence_type", "task", "model", "year"])[["R@1", "R@5"]].\
                 agg(["mean", "count"])    
@@ -157,7 +157,7 @@ def main():
 
         logging.info("Calculating standard token %")
         tokenizer = BertTokenizer.\
-                from_pretrained('microsoft/deberta-v2-xlarge')
+                from_pretrained('microsoft/deberta-base')
         vocab = tokenizer.get_vocab()
         dfs_raw_corr["title_std_token_percentage"] = dfs_raw_corr.apply(lambda r, v=vocab: 
                 sum([w in v for w in str(r["title"]).split(" ")])/len(str(r["title"]).split(" ")),axis=1)

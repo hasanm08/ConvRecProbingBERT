@@ -30,8 +30,8 @@ def main():
     parser.add_argument("--batch_size", default=1, type=int, required=False,
                         help="batch_size")
  
-    parser.add_argument("--bert_model", default='microsoft/deberta-v2-xlarge', type=str, required=False,
-                        help="bert model name ['bert-base-cased' or 'microsoft/deberta-v2-xlarge']")
+    parser.add_argument("--bert_model", default='microsoft/deberta-base', type=str, required=False,
+                        help="bert model name ['bert-base-cased' or 'microsoft/deberta-base']")
     parser.add_argument("--probe_technique", default="cls-sim", type=str, required=False,
                         help="probe technique for comparing sentences ['nsp', 'cls-sim', 'mean-sim']")
 

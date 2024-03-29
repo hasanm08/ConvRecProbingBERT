@@ -48,7 +48,7 @@ def main():
         for probe in ['search', 'recommendation']:
             sampled_items = None
             sample_idx=None            
-            for model in ['microsoft/deberta-v2-xlarge']:#['bert-base-cased', 'microsoft/deberta-v2-xlarge']:
+            for model in ['microsoft/deberta-base']:#['bert-base-cased', 'microsoft/deberta-base']:
                 file_signature = "probe_type_{}_task_{}_num_candidates_{}_num_queries_{}_model_{}.csv".format(
                     probe, task, args.number_candidates, args.number_queries, model
                 )
