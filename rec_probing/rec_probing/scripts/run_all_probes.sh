@@ -11,10 +11,10 @@ do
         python run_mlm_probe.py \
         --task $TASK \
         --input_folder $REPO_DIR/data/recommendation \
-        --output_folder $REPO_DIR/data/output_data/probes/deberta \
+        --output_folder $REPO_DIR/data/output_data/probes/deberta/ \
         --number_queries $NUMBER_PROBE_QUERIES \
         --batch_size 32 \
         --sentence_type ${SENTENCE_TYPE} \
-        --bert_model 'deberta-v2-xlarge'
+        --bert_model 'microsoft/deberta-base'
     done
 done
