@@ -1,4 +1,6 @@
 from transformers import BertForNextSentencePrediction, BertTokenizer
+from transformers import DebertaForNextSentencePrediction, DebertaTokenizer
+
 from transformers import AdamW, get_linear_schedule_with_warmup
 from torch.nn.functional import softmax
 from torch.utils.data import TensorDataset, DataLoader

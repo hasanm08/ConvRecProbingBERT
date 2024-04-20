@@ -30,10 +30,10 @@ def main():
                         help="the folder to write results")
     args = parser.parse_args()
 
-    run_folders = ["/ssd/home/gustavo/recsys2020penha/data/output_data/mt_bert4dialogue/{}/".format(i) for i in [32,33,34,35,36,37,38,39,40,41,42,43,44,45]]
-    valid_adv = pd.read_csv("/ssd/home/gustavo/recsys2020penha/data/dialogue/redial/valid_adv.csv", lineterminator= "\n").fillna(' ')
-    valid = pd.read_csv("/ssd/home/gustavo/recsys2020penha/data/dialogue/redial/valid.csv", lineterminator= "\n").fillna(' ')
-    path_movies = "/ssd/home/gustavo/recsys2020penha/data/movies_with_mentions.csv"
+    run_folders = ["~/Desktop/ConvRecProbingBERT/data/output_data/mt_bert4dialogue/{}/".format(i) for i in [32,33,34,35,36,37,38,39,40,41,42,43,44,45]]
+    valid_adv = pd.read_csv("~/Desktop/ConvRecProbingBERT/data/dialogue/redial/valid_adv.csv", lineterminator= "\n").fillna(' ')
+    valid = pd.read_csv("~/Desktop/ConvRecProbingBERT/data/dialogue/redial/valid.csv", lineterminator= "\n").fillna(' ')
+    path_movies = "~/Desktop/ConvRecProbingBERT/data/movies_with_mentions.csv"
     df_movies = pd.read_csv(path_movies)
     movies = set(df_movies["movieName"].tolist()) 
 

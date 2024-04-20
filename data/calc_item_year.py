@@ -18,7 +18,7 @@ parser.add_argument("--task", default=None, type=str, required=True,
 
 args = parser.parse_args()
 
-data_path = "/ssd/home/gustavo/recsys2020penha/data"
+data_path = "~/Desktop/ConvRecProbingBERT/data"
 task = args.task
 logging.info("Calculating wikipedia page existance for {}".format(task))
 df = pd.read_csv("{}/recommendation/{}/categories.csv".format(data_path, task), nrows=100000)

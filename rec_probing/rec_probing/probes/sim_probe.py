@@ -1,4 +1,6 @@
 from transformers import BertModel, BertTokenizer, RobertaModel, RobertaTokenizer
+from transformers import DebertaTokenizer,DebertaModel , AdamW
+
 from transformers import AdamW, get_linear_schedule_with_warmup
 from torch.nn.functional import softmax
 from torch.utils.data import TensorDataset, DataLoader
@@ -31,7 +33,9 @@ class TokenSimilarityProbe():
             torch.cuda.manual_seed_all(self.seed)
         self.batch_size = self.batch_size * max(1, self.n_gpu)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+        if "deberta" in bert_model:
+            self.model = DebertaModel.from_pretrained('microsoft/deberta-base')
+            self.tokenizer= DebertaTokenizer.from_pretrained('microsoft/deberta-base')
         if "roberta" in bert_model:
             self.model = RobertaModel.\
                 from_pretrained(bert_model)

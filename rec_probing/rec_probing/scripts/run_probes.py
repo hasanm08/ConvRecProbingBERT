@@ -15,24 +15,23 @@ logging.basicConfig(
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--task", default='gr', type=str, required=False,
+    parser.add_argument("--task", default='ml25m', type=str, required=False,
                         help="the task to run probes for ['ml25m', 'gr', 'music']")
     parser.add_argument("--probe_type", default='recommendation', type=str, required=False,
                         help="the probe to be used ['recommendation', 'search']")
     parser.add_argument("--input_folder", default='../../../data/recommendation', type=str, required=False,
                         help="path for folder with /<task>/train.csv file")
-    parser.add_argument("--output_folder", default='../../../data/output_data/probes/', type=str, required=False,
+    parser.add_argument("--output_folder", default='../../../data/output_data/probes/deberta/run_probes', type=str, required=False,
                         help="path for folder to write results")
     parser.add_argument("--number_candidates", default=1, type=int, required=False,
                         help="number of candidates for the nsp probes.")
-    parser.add_argument("--number_queries", default=10000, type=int, required=False,
+    parser.add_argument("--number_queries", default=100000, type=int, required=False,
                         help="number of total probe queries.")
-    parser.add_argument("--batch_size", default=1, type=int, required=False,
+    parser.add_argument("--batch_size", default=32, type=int, required=False,
                         help="batch_size")
- 
     parser.add_argument("--bert_model", default='microsoft/deberta-base', type=str, required=False,
                         help="bert model name ['bert-base-cased' or 'microsoft/deberta-base']")
-    parser.add_argument("--probe_technique", default="cls-sim", type=str, required=False,
+    parser.add_argument("--probe_technique", default="mean-sim", type=str, required=False,
                         help="probe technique for comparing sentences ['nsp', 'cls-sim', 'mean-sim']")
 
     args = parser.parse_args()
