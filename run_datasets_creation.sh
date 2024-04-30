@@ -8,4 +8,4 @@ mkdir data/dialogue/movies/deberta
 cd data/
 bash create_dialogue_datasets.sh
 bash create_recommendation_datasets.sh
-bash create_search_datasets.sh
+# bash create_search_datasets.sh

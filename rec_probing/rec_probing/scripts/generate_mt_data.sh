@@ -1,5 +1,5 @@
-source /ssd/home/gustavo/recsys2020penha/env/bin/activate
-REPO_DIR=/ssd/home/gustavo/recsys2020penha
+source ~/Desktop/ConvRecProbingBERT/env/bin/activate
+REPO_DIR=~/Desktop/ConvRecProbingBERT
 
 for TASK in 'redial'
 # for TASK in 'ml25m' 'gr' 'music' 'redial'
